@@ -1,10 +1,10 @@
- CREATE TABLE clients ( id_number int(11), full_name varchar(60), email varchar(60), phone varchar(20), address varchar(255), PRIMARY KEY(id_number) );
+ CREATE TABLE clients ( id_number int, full_name varchar(60), email varchar(60), phone varchar(20), address varchar(255), PRIMARY KEY(id_number) );
 
- CREATE TABLE mechanics ( id_number int(11), full_name varchar(60), phone varchar(20), specialty varchar(255),PRIMARY KEY(id_number)  ) ;
+ CREATE TABLE mechanics ( id_number int, full_name varchar(60), phone varchar(20), specialty varchar(255),PRIMARY KEY(id_number)  ) ;
 
  CREATE TABLE vehicles ( number_plate varchar(10), owner_id int(11), brand varchar(30), model varchar(50), color varchar(25), yom int(11),PRIMARY KEY(number_plate), FOREIGN KEY (owner_id) REFERENCES clients(id_number) );
 
- CREATE TABLE bookings(booking_id INT AUTO_INCREMENT, client_id INT, mechanic_id INT, day DATE, scheduled_time VARCHAR(50), description TEXT, services VARCHAR(255),PRIMARY KEY(booking_id));
+ CREATE TABLE bookings(booking_id INT AUTO_INCREMENT, client_id INT, mechanic_id INT, day DATE, scheduled_time VARCHAR(50), description TEXT, services VARCHAR(255),PRIMARY KEY(booking_id), FOREIGN KEY(client_id) REFERENCES clients(id_number), FOREIGN KEY(mechanic_id) REFERENCES mechanics(id_number));
 
  CREATE TABLE services(service_id INT, service_name VARCHAR(100), service_cost INT, PRIMARY KEY(service_id));
 
